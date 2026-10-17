@@ -23,6 +23,7 @@ LanguageModel::LanguageModel(int k0, double alpha0) {
 void LanguageModel::Builder(const std::string& filename) {
     kgram_freq.clear();
     next_k.clear();
+    alphabet.clear();
 
     ifstream file(filename);
 
@@ -126,6 +127,9 @@ char LanguageModel::pickNextChar(const string& word, mt19937& rndm_numb) const {
             character.push_back(c);
             probs2.push_back(p);
         }
+    }
+    if (character.empty()) {
+        throw runtime_error("No next character available");
     }
     //picking a character
     discrete_distribution<size_t> distribution(probs2.begin(), probs2.end());

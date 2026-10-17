@@ -18,7 +18,7 @@ string Generator::Text_gen(int k_lenght){
 
     if (kword.empty()){
         throw invalid_argument("No starting kgram found");
-        return final_word;
+        //return final_word;
     } else {
         final_word += kword;
     }
