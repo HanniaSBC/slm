@@ -3,14 +3,25 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <random>
 
 class LanguageModel{
     public:
     // Constructors
     LanguageModel(int k, double alpha);
 
-    //Method
-    void builder(const std::string& filename);
+    //Method to build the model from text file
+    void Builder(const std::string& filename);
+
+    //For the probabilities
+    //Next character "c"
+    double Probability(const std::string& word, char next_kchar) const;
+
+    //For the first kgram according to frequency
+    std::string pickStartK(std::mt19937& rndm_numb) const; //here otherwise we cant access the private elements in helper.
+
+    //For the next charactrer
+    char pickNextChar(const std::string& word, std::mt19937& rndm_numb) const;
  
     private:
     int k;
