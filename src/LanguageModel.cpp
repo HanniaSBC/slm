@@ -3,6 +3,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
+#include <set>
 
 using namespace std;
 
@@ -16,15 +17,11 @@ LanguageModel::LanguageModel(int k0, double alpha0) {
     if (alpha < 0 ) {
         throw invalid_argument("alpha must be positive");
     }
-
-
 }
 
 void LanguageModel::Builder(const std::string& filename) {
     kgram_freq.clear();
     next_k.clear();
-    alphabet.clear();
-
     ifstream file(filename);
 
     if (!file) { // can't open file
@@ -40,9 +37,13 @@ void LanguageModel::Builder(const std::string& filename) {
         throw runtime_error("The text size is smaller than k");
     }
     //Build an alphabet with all the unique characters in the text
-    for (char c : text) {
+    set<char> unique_char; 
+    for (char c : text) { //get all unique characters
+        unique_char.insert(c);
+    }
+    alphabet.clear();
+    for (char c : unique_char) {
         alphabet.push_back(c);
-
     }
 
     //Iterating through every possible kgram on the text up to the last one

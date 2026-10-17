@@ -16,5 +16,4 @@ class Generator {
     const LanguageModel& model;
 
     std::mt19937 rdnm_numb;
-
 };

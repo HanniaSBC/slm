@@ -14,7 +14,6 @@ class LanguageModel{
     void Builder(const std::string& filename);
 
     //For the probabilities
-    //Next character "c"
     double Probability(const std::string& word, char next_kchar) const;
 
     //For the first kgram according to frequency

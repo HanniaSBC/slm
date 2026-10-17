@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 int main(int argc, char* argv[]){
     try{
         double alpha = 0.0;
@@ -25,7 +24,6 @@ int main(int argc, char* argv[]){
             if(!isfinite(alpha) || alpha < 0.0) {
                 throw invalid_argument("Alpha must be positive and finite");
             }
-
             alpha = stod(argv[2]);
             k = stoi(argv[3]);
             filename = argv[4];
@@ -55,9 +53,8 @@ int main(int argc, char* argv[]){
 
             cout << final_text << endl;
             } catch (const exception& error) {
-                cerr << "There's been an error:" << error.what() <<endl;
+                cerr << "There's been an error: " << error.what() <<endl;
                 return 1;
             }
         return 0;
-
 }

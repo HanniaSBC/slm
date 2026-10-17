@@ -26,6 +26,7 @@ string Generator::Text_gen(int k_lenght){
     while(final_word.size() < static_cast<size_t>(k_lenght)) {
         //Pick the next character
         char next_char = model.pickNextChar(kword, rdnm_numb);
+        //Add it
         final_word += next_char;
         kword = kword.substr(1) + next_char;
     }
